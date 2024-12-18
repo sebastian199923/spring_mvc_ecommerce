@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo de Verificación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            color: #4A90E2;
+        }
+        .content {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .verification-code {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 10px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>VIRTUAL SHOP</h1>
+            <h2>Correo de Verificación</h2>
+        </div>
+        <div class="content">
+            <p>El código de verificación es:</p>
+            <p class="verification-code" th:text="${mensaje}"></p>
+            
+        </div>
+        <div class="footer">
+            <p>Si no solicitaste este código, ignora este mensaje.</p>
+        </div>
+    </div>
+</body>
+</html>

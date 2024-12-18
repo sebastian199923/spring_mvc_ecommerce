@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Virtual Shop</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link th:href="@{/css/styleLogin.css}" rel="stylesheet" type="text/css">
+
+<!-- -Parte de alertas personalizadas -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+	<div class="login-container">
+		<h2 class="text-center mb-4">Virtual Shop</h2>
+		<form th:action="@{/login}" method="post">
+			<input type="hidden" name="vistaMostrar" value="" />
+			<div class="mb-3">
+				<label for="email" class="form-label">Correo</label> <input
+					type="email" id="correo" name="correo" class="form-control"
+					placeholder="Ingresa tu correo" required>
+			</div>
+			<div class="mb-3">
+				<label for="contrasena" class="form-label">contraseña</label> <input
+					type="contrasena" id="contrasena" name="contrasena"
+					class="form-control" placeholder="Ingresa tu contraseña" required>
+			</div>
+			<div class="d-grid">
+				<button type="submit" class="btn btn-green">Login</button>
+				<br>
+			</div>
+		</form>
+		<!-- Botones adicionales -->
+		<div class="extra-buttons">
+			<a th:href="@{/User/Public/Registro}" class="btn btn-outline-primary">Regístrate</a>
+			<a th:href="@{/RecuperarContrasena/EnviarCorreo}"
+				class="btn btn-outline-primary">¿Olvidaste tu contraseña?</a>
+
+		</div>
+		<!-- Logo -->
+		<a th:href="@{/User/Login}"> <img
+			th:src="@{/imagenes/logos/logo.png}" alt="Logo" class="logo">
+		</a>
+
+	</div>
+
+
+
+	<script th:inline="javascript">
+		var tipoAlerta = /*[[${tipoAlerta}]]*/'info';
+		var mensajeAlerta = /*[[${mensajeAlerta}]]*/'';
+	</script>
+	<script th:src="@{/js/alert.js}"></script>
+
+
+
+
+</body>
+</html>

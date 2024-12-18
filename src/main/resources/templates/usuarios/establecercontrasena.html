@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Recupera tu contraseña</title>
+<link rel="icon" th:href="@{/imagenes/logo.png}" type="image/png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link th:href="@{/css/styleLogin.css}" rel="stylesheet" type="text/css">
+<!-- -Parte de alertas personalizadas -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+
+	<div class="login-container">
+		<h1 class="text-center mb-4">Virtual Shop</h1>
+		<h3 class="text-center mb-4">Ingresa tu nueva contraseña</h3>
+		<form th:action="@{/RecuperarContrasena/GuardarContrasena}" method="post">
+			<div class="mb-3">
+				<label for="contrasena" class="form-label">Ingresa tu nueva contraseña</label> <input type="password" id="contrasena" name="contrasena"
+					class="form-control" placeholder="Ingresa tu nueva contraseña"
+					required>
+			</div>
+
+			<div class="mb-3">
+				<label for="contrasena1" class="form-label">Repite tu nueva
+					contraseña</label> <input type="password" id="contrasena1"
+					name="contrasena1" class="form-control"
+					placeholder="Ingresa tu nueva contraseña" required>
+			</div>
+
+			<div class="d-grid">
+				<button type="submit" id="btn-cambiocontraseña"
+					class="btn btn-green" style="display: none;">Cambiar tu contraseña</button>
+				<br>
+			</div>
+		</form>
+
+		<p id="error-message" style="color: red; display: none;">Las
+			contraseñas no coinciden.</p>
+		
+		<p id="numeroCaracteres" style="color: red; display: none;">La contraseña debe tener al menos 8 carateres.</p>
+
+		<!-- Logo -->
+		   <a th:href="@{/User/Login}">
+    <img th:src="@{/imagenes/logos/logo.png}" alt="Logo" class="logo">
+        </a>
+	</div>
+
+	<script th:inline="javascript">
+		var tipoAlerta = /*[[${tipoAlerta}]]*/'info';
+		var mensajeAlerta = /*[[${mensajeAlerta}]]*/'';
+	</script>
+	<script th:src="@{/js/alert.js}"></script>
+
+</body>
+</html>

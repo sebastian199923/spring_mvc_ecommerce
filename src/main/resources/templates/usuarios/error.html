@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/imagenes/logo.png}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="/path-to-your-styles.css">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border: 2px solid #dc3545;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            animation: shake 0.5s;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: #dc3545;
+        }
+
+        .error-container h1 {
+            font-size: 28px;
+            color: #dc3545;
+            margin: 20px 0 10px;
+        }
+
+        .error-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .error-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .error-container a:hover {
+            background-color: #c82333;
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">❌</div>
+        <h1>¡Algo salió mal!</h1>
+        
+        <a th:href="${mensaje}">Volver al inicio</a>
+          
+    </div>
+</body>
+</html>

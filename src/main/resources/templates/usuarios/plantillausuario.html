@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Vitual shop</title>
+<meta charset="utf-8">
+<link h:fragment="logoAplicacion" rel="icon"
+	th:href="@{/imagenes/logo.png}" type="image/png">
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<!-- -Parte de alertas personalizadas -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+	<div class="preloader-wrapper">
+		<div class="preloader"></div>
+	</div>
+
+	<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+		tabindex="-1" id="offcanvasCart">
+		<div class="offcanvas-header justify-content-center">
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+				aria-label="Close"></button>
+		</div>
+
+	</div>
+
+	<!--ENCABEZADO ADMINISTRADOR-->
+
+	<header
+		th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'ADMIN'}"
+		th:fragment="2headeradmin">
+		<div
+			class="container-fluid d-flex fullscreen-container justify-content-center align-items-center">
+			<div class="container-fluid"
+				style="background-color: #b0e57c; border-radius: 15px;">
+				<ul
+					class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+					<li class="nav-item active"><a
+						th:href="@{/User/ListarUsuario}" class="nav-link">Mis Datos</a></li>
+
+					<li class="nav-item active"><a th:href="@{/Productos/Listar}"
+						class="nav-link">Productos</a></li>
+
+					<li class="nav-item active"><a
+						th:href="@{/Orden/TodasCompras}" class="nav-link">Todas las
+							compras</a></li>
+					<li class="nav-item active"><a
+						th:href="@{/Admin/GestionUsuarios}" class="nav-link">Gestion
+							usuarios</a></li>
+
+
+					<li class="nav-item active"><a
+						th:href="@{/Categorias/ListarCategorias}" class="nav-link">Gestion
+							Categorias</a></li>
+
+
+					<li class="nav-item active"><a th:href="@{/logout}"
+						class="nav-link">Cerrar sesión</a></li>
+
+				</ul>
+			</div>
+		</div>
+
+	</header>
+
+	<header
+		th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'ADMIN'}"
+		th:fragment="1headeradmin">
+		<div class="container-fluid">
+			<div class="row py-3 border-bottom">
+
+				<div
+					class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
+					<div class="d-flex align-items-center my-3 my-sm-0">
+						<a th:href="@{/Admin/home}"> <img
+							th:src="@{/imagenes/logos/logo.png}" width="80" alt="logo"
+							class="img-fluid">
+						</a>
+					</div>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+						aria-controls="offcanvasNavbar">
+						<svg width="24" height="24" viewBox="0 0 24 24">
+							<use xlink:href="#menu"></use></svg>
+					</button>
+				</div>
+
+
+				<div class="col-lg-4">
+					<ul
+						class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+						<li class="nav-item active"><a
+							th:href="@{/User/ListarUsuario}" class="nav-link">Mis datos</a></li>
+
+
+						<li class="nav-item active"><a th:href="@{/logout}"
+							class="nav-link">Cerrar sesion</a></li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--FIN ENCABEZADO ADMINISTRADOR-->
+	<!--INICIO ENCABEZADO USER-->
+
+<header
+		th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'USER'}"
+		th:fragment="2header">
+
+<div
+			class="container-fluid d-flex fullscreen-container justify-content-center align-items-center">
+
+<div th:if="${session.usuarioSesion != null}" class="container-fluid"
+				style="background-color: #b0e57c; border-radius: 15px;">
+				<ul
+					class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+					<li class="nav-item active"><a
+						th:href="@{/User/ListarUsuario}" class="nav-link">Mis Datos</a></li>
+					<li class="nav-item active"><a
+						th:href="@{/User/ProductosComprados}" class="nav-link">Mis
+							Compras</a></li>
+					<li class="nav-item active"><a th:href="@{/logout}"
+						class="nav-link">Cerrar sesión</a></li>
+				</ul>
+			</div>
+
+<div th:if="${session.usuarioSesion == null}" class="container-fluid"
+				style="background-color: #b0e57c; border-radius: 15px;">
+				<ul
+					class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+					<li class="nav-item active"><a th:href="@{/}" class="nav-link">Inicio</a>
+					</li>
+					<li class="nav-item active"><a th:href="@{/User/Registro}"
+						class="nav-link">Registarte</a></li>
+					<li class="nav-item active"><a th:href="@{/User/Login}"
+						class="nav-link">Inicia sesion</a></li>
+</ul>
+			</div>
+		</div>
+</header>
+
+<header
+		th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'USER'}"
+		th:fragment="1header">
+		<div class="container-fluid">
+			<div class="row py-3 border-bottom">
+
+				<div
+					class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
+					<div class="d-flex align-items-center my-3 my-sm-0">
+						<a th:href="@{/}"> <img th:src="@{/imagenes/logos/logo.png}"
+							width="80" alt="logo" class="img-fluid">
+						</a>
+					</div>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+						aria-controls="offcanvasNavbar">
+						<svg width="24" height="24" viewBox="0 0 24 24">
+							<use xlink:href="#menu"></use></svg>
+					</button>
+				</div>
+
+				<div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4">
+					<div class="search-bar row bg-light p-2 rounded-4">
+
+						<div class="col-11 col-md-7">
+							<form id="search-form" class="text-center"
+								onsubmit="event.preventDefault(); buscarProductoAjax();">
+								<div
+									style="display: flex; align-items: center; justify-content: center;">
+									<input type="text" class="form-control border-0 bg-transparent"
+										name="nombreProducto" id="nombreProducto"
+										placeholder="Buscar productos">
+
+									<button type="submit"
+										style="background: transparent; border: none; padding: 0; cursor: pointer;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+											viewBox="0 0 24 24" style="margin-left: 10px;">
+                <path fill="currentColor"
+												d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+            </svg>
+									</button>
+								</div>
+							</form>
+
+						</div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+
+<div class="col-lg-4" th:if="${session.usuarioSesion != null}">
+					<ul
+						class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+						<li class="nav-item active"><a
+							th:href="@{/User/ListarUsuario}" class="nav-link">Mis datos</a></li>
+						<li class="nav-item active"><a
+							th:href="@{/User/ProductosComprados}" class="nav-link">Mis
+								Compras</a></li>
+						<li class="nav-item active"><a th:href="@{/logout}"
+							class="nav-link">Cerrar sesión</a></li>
+					</ul>
+				</div>
+
+<div class="col-lg-4" th:if="${session.usuarioSesion == null}">
+					<ul
+						class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+						<li class="nav-item active"><a th:href="@{/User/Login}"
+							class="nav-link">Inicia sesion</a></li>
+						<li class="nav-item active"><a th:href="@{/User/Registro}"
+							class="nav-link">Registrate</a></li>
+
+					</ul>
+				</div>
+				</th:if>
+				</div>
+		</div>
+	</header>
+
+	<!--ENCABEZADO USER-->
+
+<div th:fragment="fondologo">
+		<section
+			th:style="|background-image: url('/imagenes/logos/logoPrincipal.png'); background-repeat: no-repeat; background-size: cover;|">
+			<div class="container-lg">
+				<div class="row">
+					<div class="col-lg-6 pt-5 mt-5">
+						<h2 class="display-1 ls-1">
+							<span class="fw-bold text-primary">Virtual Shop</span> Tu tienda
+							virtual <span class="fw-bold">Favorita</span>
+						</h2>
+
+<div class="row my-5"></div>
+					</div>
+				</div>
+			</div>
+	</div>
+
+<!-- Carrito de compras con contador flotante a la derecha -->
+	<div th:fragment="carroflotante">
+		<div
+			style="position: fixed; right: 20px; bottom: 70px; z-index: 9999; display: flex; align-items: center;">
+			<a th:href="@{/Public/MostrarCarro}"> <img
+				th:src="@{/imagenes/logos/iconoCarrito.jpg}" alt="Carrito"
+				width="90"> <span id="cart-count"
+				class="badge bg-danger rounded-circle"
+				style="margin-left: 10px; font-size: 12px;"> <span
+					id="contadorCarrito" th:text="${contadorCarrito}"></span>
+			</span>
+			</a>
+		</div>
+	</div>
+
+<div
+		th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'USER'}"
+		th:fragment="userfooter">
+		<footer id="piepagina" class="py-5">
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer-menu">
+							<a th:href="@{/}"> <img th:src="@{/imagenes/logos/logo.png}"
+								width="250" height="250" alt="logo">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div id="footer-bottom">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 copyright">
+								<p>© 2024 Sebastian Gomez Osorio. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+<div th:if="${session.usuarioSesion != null and session.usuarioSesion.tipo == 'ADMIN'}"
+		th:fragment="adminfooter">
+		<footer class="py-5">
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer-menu">
+							<a th:href="@{/Admin/home}"> <img
+								th:src="@{/imagenes/logos/logo.png}" width="250" height="250"
+								alt="logo">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div id="footer-bottom">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 copyright">
+								<p>© Sebastian Gomez Osorio. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+<!-- Script de SweetAlert -->
+	<script th:inline="javascript">
+		/* Definimos variables de Thymeleaf para JavaScript */
+		var tipoAlerta = /*[[${tipoAlerta}]]*/'info';
+		var mensajeAlerta = /*[[${mensajeAlerta}]]*/'';
+
+		// Solo mostrar SweetAlert si hay un mensaje
+		if (mensajeAlerta) {
+			Swal.fire({
+				title : tipoAlerta === 'success' ? '¡Éxito!'
+						: tipoAlerta === 'error' ? '¡Error!' : '¡Atención!',
+				text : mensajeAlerta,
+				icon : tipoAlerta,
+				confirmButtonText : 'Aceptar'
+			});
+		}
+	</script>
+
+
+
+	
+
+	
+	<script th:src="@{/js/script.js}"></script>
+
+
+
+
+</body>
+</html>

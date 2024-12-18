@@ -1,0 +1,84 @@
+html, body {
+      height: 100%;
+      margin: 0;
+      padding-top: 20px;
+      padding-bottom: 100px; 
+       
+    }
+
+ .content {
+      flex: 1; 
+    }
+    
+
+
+
+
+footer {
+ 
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 330px;
+  color: black;
+}
+
+
+    
+    
+ .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            
+        }
+        .logo {
+            display: block;
+            margin: 20px auto 10px;
+            max-width: 150px;
+        }
+    
+    
+ /*Hacer que el menú desplegable aparezca al pasar el mouse*/
+.dropdown:hover .dropdown-menu {
+      display: block;
+}
+/* Asegurarse de que el menú se esconda inicialmente */
+.dropdown-menu {
+      display: none;
+    }
+    
+    
+    
+    
+    
+    
+ /* Centrar el contenido del modal */
+.modal-dialog {
+    margin: 0 auto;
+    max-width: 500px; /* Limita el tamaño máximo del modal */
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.modal-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.modal-login .logo {
+    max-width: 100px; /* Asegura un tamaño adecuado para el logo */
+    margin: 10px auto; /* Centra el logo */
+}
+
+.modal-login .btn {
+    margin: 10px 0; /* Espacio entre botones */
+}
