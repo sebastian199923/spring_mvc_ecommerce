@@ -1,4 +1,6 @@
 package com.h.controller;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +48,7 @@ public class UsuarioController {
 	@GetMapping("/ListarUsuario")
 	public String listarUsuario(@AuthenticationPrincipal org.springframework.security.core.userdetails.User userDetails,
 			Model model) {
+		
 		// Se obtiene el usuario que esta loggueado
 		String correo = userDetails.getUsername();
 		Optional<Usuario> optionalUsuario = userservice.findByCorreo(correo);
@@ -135,8 +138,15 @@ public class UsuarioController {
 
 		Optional<Usuario> usuario = userservice.findByCorreo(userDetails.getUsername());
 		if (usuario.isPresent()) {
+            
+		    //Para establecer el ultimo inicio de sesion
+			Usuario usuarioLogeado = usuario.get();
+			usuarioLogeado.setUltimoLogin(LocalDateTime.now());
+			userservice.editarUsuario(usuarioLogeado);
+
 			sesion.setAttribute("usuarioSesion", usuario.get().getId());
 			String vistaMostrar = (String) request.getSession().getAttribute("vistaMostrar");
+
 			// Valida que tipo de usuario se logueo
 			if (usuario.get().getTipo().equals("USER")) {
 
@@ -186,25 +196,25 @@ public class UsuarioController {
 	// Detalle de compra por cada usuario
 	@GetMapping("/DetalleCompra/{id}")
 	public String compraDetalle(@AuthenticationPrincipal org.springframework.security.core.userdetails.User userDetails,
-		Model modelo, @PathVariable Integer id) {
+			Model modelo, @PathVariable Integer id) {
 		// Se tre el detalle orden de determinada orden
 		List<detalleOrden> detalleOrden = detalleOrdenService.findByOrdenId(id);
 		// Se obtiene el tipo de usuario que esta en la sesion
 		Optional<Usuario> usuario = userservice.findByCorreo(userDetails.getUsername());
-		
-		if(usuario.isPresent()) {
+
+		if (usuario.isPresent()) {
 			modelo.addAttribute("compradetalles", detalleOrden);
 			modelo.addAttribute("tipoUsuario", usuario.get().getTipo());
 			return "usuarios/compradetalle";
 		}
 		return "usuarios/home";
-		
+
 	}
 
 	// Metodo para cerrar la sesion del usuario
 	@GetMapping("/CerrarSesion")
 	public String cerrarSesion() {
-		
+
 		return "redirect:/HomeUser/Listar";
 	}
 }

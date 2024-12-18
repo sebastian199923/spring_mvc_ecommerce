@@ -85,6 +85,8 @@ integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJ
                                    
                                      <td th:text="${usuario.get(7)}"></td> <!--Numero de compras hecha por ese usuario -->
                                      <td th:text="'$'+${#numbers.formatDecimal(usuario.get(8), 0, 'POINT', 0, 'COMMA')}"></td> <!-- Cantidad de dinero en las compras del suuario -->
+                                      <td th:text="${#dates.format(usuario.get(9), 'yyyy-MM-dd HH:mm')}"></td>
+                                      
                                      
                             </tr>
                         </tbody>
