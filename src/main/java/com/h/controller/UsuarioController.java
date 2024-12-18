@@ -109,20 +109,20 @@ public class UsuarioController {
 		String resultado = userservice.guardarUsuario(user);
 
 		if (resultado.equals("El usuario ha sido registrado")) {
-			redirectAttributes.addFlashAttribute("mensajeRegistro", "El usuario ha sido registrado.");
-			redirectAttributes.addFlashAttribute("tipo", "success");
+			redirectAttributes.addFlashAttribute("mensajeAlerta", "El usuario ha sido registrado.");
+			redirectAttributes.addFlashAttribute("tipoAlerta", "success");
 			return "redirect:/User/Login";
 		} else if (resultado.equals("cedulaUnica")) {
-			redirectAttributes.addFlashAttribute("mensajeRegistro", "La cedula ya ha sido registrada en el sistema.");
-			redirectAttributes.addFlashAttribute("tipo", "error");
+			redirectAttributes.addFlashAttribute("mensajeAlerta", "La cedula ya ha sido registrada en el sistema.");
+			redirectAttributes.addFlashAttribute("tipoAlerta", "error");
 			return "redirect:/User/Public/Registro";
 		} else if (resultado.equals("correoUnico")) {
-			redirectAttributes.addFlashAttribute("mensajeRegistro", "El correo ya ha sido registrado en el sistema.");
-			redirectAttributes.addFlashAttribute("tipo", "error");
+			redirectAttributes.addFlashAttribute("mensajeAlerta", "El correo ya ha sido registrado en el sistema.");
+			redirectAttributes.addFlashAttribute("tipoAlerta", "error");
 			return "redirect:/User/Public/Registro";
 		} else {
-			redirectAttributes.addFlashAttribute("mensajeRegistro", "Ocurrió un error inesperado.");
-			redirectAttributes.addFlashAttribute("tipo", "error");
+			redirectAttributes.addFlashAttribute("mensajeAlerta", "Ocurrió un error inesperado.");
+			redirectAttributes.addFlashAttribute("tipoAlerta", "error");
 			return "redirect:/User/Public/Registro";
 		}
 	}

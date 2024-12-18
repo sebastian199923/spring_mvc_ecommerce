@@ -64,7 +64,7 @@ public class HomeController {
 
 		Optional<Producto> producto = productoService.get(id);
 		    model.addAttribute("produ", producto.get());
-			return "usuarios/detalleproductos.html";
+			return "usuarios/detalleproducto.html";
 	}
 
 	// Buscador de productos

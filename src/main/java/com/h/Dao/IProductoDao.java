@@ -15,12 +15,9 @@ import org.springframework.data.domain.Pageable;
 @Repository
 public interface IProductoDao extends JpaRepository<Producto, Integer> {
 
-	// Listar productos donde la cantidad de productos disponibles sea mayor a 0
-	List<Producto> findByCantidadGreaterThan(int cantidad);
-
-	// Buscar producto por nombre
-	// Page<Producto> findByNombreContainingIgnoreCase(String nombre, PageRequest
-	// pageRequest);
+	//Trae solo los porductos activos y que la cantidad sea mayor a 0 y que esten activos
+	@Query("SELECT p FROM Producto p WHERE p.cantidad > :cantidad AND p.activo = TRUE")
+	List<Producto> findByCantidadGreaterThan(@Param("cantidad") int cantidad);
 
 	// Listar por nombre y estado activo
 	@Query("SELECT p FROM Producto p WHERE p.activo = TRUE AND LOWER(p.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
